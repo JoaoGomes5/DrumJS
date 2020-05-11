@@ -36,19 +36,38 @@ function makeSound(key){
     }
 
 }
+
+function buttonAnimation(currentKey){
+
+        var activeBtn = document.querySelector("." + currentKey);
+
+        activeBtn.classList.add("pressed");
+        
+        setTimeout(() => {
+            
+            activeBtn.classList.remove("pressed");
+
+       }, 600);
+} 
+
 for(var i = 0 ; i<numberOfDrums ; i++){
 
     document.querySelectorAll(".drum")[i].addEventListener("click" , function  (){
         
         var butoonElement = this.innerHTML;
         makeSound(butoonElement);
-    
+
+        buttonAnimation(butoonElement);
+        
     });
 }
 
-    document.addEventListener("keypress" ,  function(event) {
-        makeSound(event.key);
-    });
+document.addEventListener("keypress" ,  function(event) {
+
+            makeSound(event.key);
+            buttonAnimation(event.key);
+
+ });
 
     
 
